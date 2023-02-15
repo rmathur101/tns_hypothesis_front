@@ -1,4 +1,5 @@
-let api = "http://127.0.0.1:8000"
+// let api = "http://127.0.0.1:8000"
+let api = "http://ec2-44-201-28-84.compute-1.amazonaws.com/"
 
 function logEvent(event, otherData) {
   fetch(api + '/log_event', {
@@ -58,7 +59,10 @@ function getAnnots() {
       let key = Object.keys(contentMetadata)[i];
       let viaHypothesisLink = "https://via.hypothes.is/" + key;
       let thisContent = contentMetadata[key];
-      let dateNum = moment(this.newest_annot_date).valueOf()
+      let dateNum = moment(thisContent.newest_annot_date).valueOf()
+      console.log(dateNum)
+      console.log(moment(thisContent.newest_annot_date).valueOf())
+      console.log('')
 
       // need a for loop here
       tableRows = tableRows + `
