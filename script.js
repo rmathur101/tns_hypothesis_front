@@ -31,9 +31,9 @@ document.getElementById('faq-link').addEventListener('click', (e) => {
   logEvent('user clicked FAQ link', null)
 })
 
-// document.getElementById('join-group-link').addEventListener('click', (e) => {
-//   logEvent('user clicked JOIN GROUP link', null)
-// })
+document.getElementById('join-group-link').addEventListener('click', (e) => {
+  logEvent('user clicked JOIN GROUP link', null)
+})
 
 document.getElementById('default-toggled-sort-icon').addEventListener('click', (e) => {
   logEvent('user clicked last annotated sort', null)
