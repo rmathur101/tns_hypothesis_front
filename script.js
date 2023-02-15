@@ -1,5 +1,5 @@
-// let api = "http://127.0.0.1:8000"
-let api = "http://ec2-44-201-28-84.compute-1.amazonaws.com/"
+// let api = "http://ec2-44-201-28-84.compute-1.amazonaws.com/"
+let api = "https://9e8b-2600-1700-290-da50-71d5-53af-3302-40c1.ngrok.io/"
 
 function logEvent(event, otherData) {
   fetch(api + '/log_event', {
