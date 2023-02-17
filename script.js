@@ -62,6 +62,25 @@ function getAnnots() {
 
     let contentMetadata = data.data.content_metadata;
 
+    let getAuthor = (title) => {
+      let titleAuthorMap = {
+        "1729.cloud: A nostr relay for The Network State (TNS)": "ojas",
+        "Three global shifts driving us toward the Network State": "MattHarder",
+        "Why Your Online Community May Need An Educational Program": "grant",
+        "Teach AI How to Not Be a Dick": "Dozer",
+        "Powerful Populations": "khrannok",
+        "Artificial Intelligence and Collective Consciousness - DS Compounding": "Dave86(CH)",
+        "AI's Next Trick: Faking Identities": "youdoknowjack"
+      }
+
+      let author = titleAuthorMap[title]
+      if (author == null) {
+        return "NA"
+      } else {
+        return author
+      }
+    }
+
     let tableRows = "";
     for (let i in (Object.keys(contentMetadata))) {
       let key = Object.keys(contentMetadata)[i];
@@ -86,9 +105,10 @@ function getAnnots() {
         </td>
         ${null/*<td class="bookmark-tags">${getTagsFromURL(url)}</td>*/}
         ${null/*<td class="bookmark-rating">${(url.rating == null ? 'None' : url.rating)}</td>*/}
-        <td>${renderTags(thisContent.tags)}</td>
+        <td style="text-align: center;">${getAuthor(thisContent.title[0])}</td>
         <td class="annotators" style="text-align: center;">${thisContent.users.join(' ')}</td>
         <td class="num-annots" style="text-align: center;">${thisContent.num_annots}</td>
+        <td>${renderTags(thisContent.tags)}</td>
         <td class="bookmark-date-hidden" style="display: none">${dateNum}</td>
         <td class="num-com-hidden" style="display: none">${thisContent.users.length}</td>
       </tr>
