@@ -48,7 +48,7 @@ document.getElementById('num-annots-sort').addEventListener('click', (e) => {
 })
 
 function getAnnots() {
-  fetch(api + '/', {
+  fetch(api + '/tns_hypothesis_dashboard_home', {
     method: 'GET',
     headers: { 
       'Content-Type': 'application/json', 
