@@ -1,6 +1,6 @@
-// let api = "http://ec2-44-201-28-84.compute-1.amazonaws.com/"
+let api = "https://thinker.city"
 // let api = "http://localhost:8000"
-let api = "https://9e8b-2600-1700-290-da50-71d5-53af-3302-40c1.ngrok.io"
+// let api = "https://9e8b-2600-1700-290-da50-71d5-53af-3302-40c1.ngrok.io"
 
 document.addEventListener('DOMContentLoaded', function() {
   var tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
