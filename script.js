@@ -76,10 +76,12 @@ function getAnnots() {
         "Artificial Intelligence and Collective Consciousness - DS Compounding": "Dave86(CH)",
         "AI's Next Trick: Faking Identities": "youdoknowjack",
         "Winds of Paradigm Change: From Early Christians, 1776ers, and Marxists to the Network State": "Jim_Nomad",
-        "Friendship at Our Fingertips: How Technology Is Transforming Social Interaction": "Camellia"
+        "Friendship at Our Fingertips: How Technology Is Transforming Social Interaction": "Camellia",
+        "Go-To-Society Strategy - And Why Network States do Need a Founde…": "peerbase.eth",
+        "What exactly is a Network State?": "Tom"   
       }
 
-      let author = titleAuthorMap[title]
+      let author = titleAuthorMap[title.trim()]
       if (author == null) {
         return "NA"
       } else {
