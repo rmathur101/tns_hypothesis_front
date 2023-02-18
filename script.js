@@ -70,7 +70,9 @@ function getAnnots() {
         "Teach AI How to Not Be a Dick": "Dozer",
         "Powerful Populations": "khrannok",
         "Artificial Intelligence and Collective Consciousness - DS Compounding": "Dave86(CH)",
-        "AI's Next Trick: Faking Identities": "youdoknowjack"
+        "AI's Next Trick: Faking Identities": "youdoknowjack",
+        "Winds of Paradigm Change: From Early Christians, 1776ers, and Marxists to the Network State": "Jim_Nomad",
+        "Friendship at Our Fingertips: How Technology Is Transforming Social Interaction": "Camellia"
       }
 
       let author = titleAuthorMap[title]
