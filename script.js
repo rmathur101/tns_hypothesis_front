@@ -78,7 +78,15 @@ function getAnnots() {
         "Winds of Paradigm Change: From Early Christians, 1776ers, and Marxists to the Network State": "Jim_Nomad",
         "Friendship at Our Fingertips: How Technology Is Transforming Social Interaction": "Camellia",
         "Go-To-Society Strategy - And Why Network States do Need a Founde…": "peerbase.eth",
-        "What exactly is a Network State?": "Tom"   
+        "What exactly is a Network State?": "Tom",
+        "Barbell Strategies for everyday life": "Abhisek",
+        "Index strategies for everyday life": "Abhisek",
+        "Embracing the Fourth Turning": "khrannok",
+        "🌋 The network curse: spice islands and digital renaissance": "Nuraling",
+        "So, you want to make some content?": "Michael Finney",
+        "Panic at the Casino": "youdoknowjack",
+        "How to Incorporate AI into The Publishing Process": "grant",
+        "A Farewell to Innocence: Crypto Pitfalls That Network States Should Avoid": "Jim_Nomad" 
       }
 
       let author = titleAuthorMap[title.trim()]
