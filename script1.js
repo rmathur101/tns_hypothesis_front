@@ -1,5 +1,5 @@
-// let api = "https://thinker.city"
-let api = "http://localhost:8000"
+let api = "https://thinker.city"
+// let api = "http://localhost:8000"
 // let api = "https://9e8b-2600-1700-290-da50-71d5-53af-3302-40c1.ngrok.io"
 
 let contentAnnots = null
@@ -257,7 +257,7 @@ function getAnnots() {
           let annotsHTML = `
             <div>
               <span style="font-size: 13px;">
-                You must authenticate with Discord to view annotations on this dashboard. <a id="auth-link" href="https://discord.com/api/oauth2/authorize?client_id=1025143058116911144&redirect_uri=http://localhost:8080/&response_type=code&scope=identify%20guilds" style="color: #716397;">Click here</a> to authenticate with Discord. 
+                You must authenticate with Discord to view annotations on this dashboard. <a id="auth-link" href="https://discord.com/api/oauth2/authorize?client_id=1025143058116911144&redirect_uri=https://thinker.city/&response_type=code&scope=identify%20guilds" style="color: #716397;">Click here</a> to authenticate with Discord. 
               </span>
             </div>
           `
