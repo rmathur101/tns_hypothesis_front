@@ -257,7 +257,7 @@ function getAnnots() {
           let annotsHTML = `
             <div>
               <span style="font-size: 13px;">
-                You must authenticate with Discord to view annotations on this dashboard. <a id="auth-link" href="https://discord.com/api/oauth2/authorize?client_id=1025143058116911144&redirect_uri=https://thinker.city/&response_type=code&scope=identify%20guilds" style="color: #716397;">Click here</a> to authenticate with Discord. 
+                You must authenticate with Discord to view annotations on this dashboard. <a id="auth-link" href="https://discord.com/api/oauth2/authorize?client_id=1025143058116911144&redirect_uri=https://rmathur101.github.io/tns_hypothesis_front/&response_type=code&scope=identify%20guilds" style="color: #716397;">Click here</a> to authenticate with Discord. 
               </span>
             </div>
           `
