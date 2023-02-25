@@ -1,7 +1,85 @@
-let api = "https://thinker.city"
-// let api = "http://localhost:8000"
+// let api = "https://thinker.city"
+let api = "http://localhost:8000"
 // let api = "https://9e8b-2600-1700-290-da50-71d5-53af-3302-40c1.ngrok.io"
 
+
+function hideLoginElems() {
+  document.getElementById("login-cont").style.display = "none";
+}
+
+let contentAnnots = null
+
+let authenticated = false;
+let jwt = Cookies.get('jwt');
+console.log('jwt')
+console.log(jwt)
+if (jwt) {
+  fetch(api + '/check_jwt', {
+    method: 'POST',
+    headers: { 
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + Cookies.get('jwt')
+    }
+  })
+  .then((res) => {
+    if (res.status == 200) {
+      hideLoginElems();
+      authenticated = true;
+      getAnnotationsFeed();
+    }
+  })
+}
+
+let searchParams = new URLSearchParams(window.location.search);
+let discordCode = searchParams.get("code");
+console.log("searchParams:code");
+console.log(discordCode);
+if (authenticated == false && discordCode) {
+  // send code to backend
+  fetch(api + '/discord', {
+    method: 'POST',
+    body: JSON.stringify({'code': discordCode}),
+    headers: { 'Content-Type': 'application/json' }
+  })
+  .then((res) => {
+    return res.json()
+  })
+  .then(data => {
+    console.log("data from /discord");
+    console.log(data);
+    if (data.status_code == 200) {
+      hideLoginElems();
+      Cookies.set('jwt', data.jwt_access_token);
+      authenticated = true;
+
+      contentAnnots = data.data.content_annots;
+
+      // remove the code from url (to prevent request to /discord on refresh)
+      let url = new URL(window.location.href);
+      let params = new URLSearchParams(url.search);
+      params.delete("code");
+      url.search = params.toString();
+      history.pushState({}, "", url);
+    }
+  });
+}
+
+let getAnnotationsFeed = () => {
+  fetch(api + '/get_annotations_feed', {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + Cookies.get('jwt')
+    }
+  })
+  .then((res) => res.json())
+  .then(data => {
+    console.log("data from getAnnotationsFeed");
+    console.log(data);
+    contentAnnots = data.data.content_annots;
+  });
+}
+      
 document.addEventListener('DOMContentLoaded', function() {
   var tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
   tooltipElements.forEach(function(element) {
@@ -103,11 +181,7 @@ function getAnnots() {
       let viaHypothesisLink = "https://via.hypothes.is/" + key;
       let thisContent = contentMetadata[key];
       let dateNum = moment(thisContent.newest_annot_date).valueOf()
-      console.log(dateNum)
-      console.log(moment(thisContent.newest_annot_date).valueOf())
-      console.log('')
 
-      // need a for loop here
       tableRows = tableRows + `
       <tr class="saved-bookmark-row">
         <td class="bookmark-date" style="text-align: center;">${moment(thisContent.newest_annot_date).format('MMM Do')}</td>
@@ -116,13 +190,21 @@ function getAnnots() {
           <a style="text-decoration: none; font-weight: 500; color: black;" class="bookmark-title bookmark-URL-link" target="_blank">${thisContent.title[0]}</a>
           <br/>
           <br/>
-          <a target="_blank" class="open-URL-link" href=${key}>Open Original</a><br/>
-          <a target="_blank" class="open-URL-link" href=${viaHypothesisLink}>Open with Annotations</a>
+          <span>
+            <a target="_blank" class="open-URL-link" href=${key}>Open Original</a>
+            <span class="material-symbols-outlined view-annot-info" data-placement="bottom" data-toggle="tooltip" title='Open the original article. View annotations on the original using the browser extension. See FAQ for info.'>info</span>
+          </span>
+          <a style="display: none;" target="_blank" class="open-URL-link" href=${viaHypothesisLink}>Open with Annotations</a>
+          <br/>
+          <span>
+            <a data-content-key=${key} style="cursor: pointer;" target="_blank" class="view-annots-link">View Annotations</a>
+            <span class="material-symbols-outlined view-annot-info" data-placement="bottom" data-toggle="tooltip" title='View annotations without leaving this page.'>info</span>
+          </span>
         </td>
         ${null/*<td class="bookmark-tags">${getTagsFromURL(url)}</td>*/}
         ${null/*<td class="bookmark-rating">${(url.rating == null ? 'None' : url.rating)}</td>*/}
         <td style="text-align: center;">${getAuthor(thisContent.title[0])}</td>
-        <td class="annotators" style="text-align: center;">${thisContent.users.join(' ')}</td>
+        <td class="annotators" style="text-align: center;">${thisContent.users.join(', ')} (${thisContent.users.length})</td>
         <td class="num-annots" style="text-align: center;">${thisContent.num_annots}</td>
         <td>${renderTags(thisContent.tags)}</td>
         <td class="bookmark-date-hidden" style="display: none">${dateNum}</td>
@@ -143,12 +225,17 @@ function getAnnots() {
     // insert table rows
     document.getElementById("saved-bookmarks-table-body").innerHTML = tableRows
 
+    var tooltipElements = document.querySelectorAll('[data-toggle="tooltip"]');
+    tooltipElements.forEach(function(element) {
+      var tooltip = new bootstrap.Tooltip(element);
+    });
+
     let bookmarkLinks = document.getElementsByClassName("open-URL-link")
     for (const link of bookmarkLinks) {
-      let numAnnotsElem = link.parentElement.parentElement.getElementsByClassName("num-annots")[0]
-      let numComHiddenElem = link.parentElement.parentElement.getElementsByClassName("num-com-hidden")[0]
-      let annotatorsElem = link.parentElement.parentElement.getElementsByClassName("annotators")[0]
-      let bookmarkTitle = link.parentElement.parentElement.getElementsByClassName("bookmark-title")[0]
+      let numAnnotsElem = link.parentElement.parentElement.parentElement.getElementsByClassName("num-annots")[0]
+      let numComHiddenElem = link.parentElement.parentElement.parentElement.getElementsByClassName("num-com-hidden")[0]
+      let annotatorsElem = link.parentElement.parentElement.parentElement.getElementsByClassName("annotators")[0]
+      let bookmarkTitle = link.parentElement.parentElement.parentElement.getElementsByClassName("bookmark-title")[0]
 
       link.addEventListener('click', (e) => {
         logEvent('user opened bookmark', {
@@ -160,6 +247,84 @@ function getAnnots() {
         })
       })
     }
+
+    let viewAnnotsLinks = document.getElementsByClassName("view-annots-link")
+    for (const link of viewAnnotsLinks) {
+
+      link.addEventListener('click', (e) => {
+
+        let numAnnotsElem = link.parentElement.parentElement.parentElement.getElementsByClassName("num-annots")[0]
+        let numComHiddenElem = link.parentElement.parentElement.parentElement.getElementsByClassName("num-com-hidden")[0]
+        let annotatorsElem = link.parentElement.parentElement.parentElement.getElementsByClassName("annotators")[0]
+        let bookmarkTitle = link.parentElement.parentElement.parentElement.getElementsByClassName("bookmark-title")[0]
+
+        contentAnnots = getContentAnnots()
+
+        if (!contentAnnots) {
+          let annotsHTML = `
+            <div>
+              <span style="font-size: 13px;">
+                You must authenticate with Discord to view annotations on this dashboard. <a id="auth-link" href="https://discord.com/api/oauth2/authorize?client_id=1025143058116911144&redirect_uri=http://localhost:8080/&response_type=code&scope=identify%20guilds" style="color: #716397;">Click here</a> to authenticate with Discord. 
+              </span>
+            </div>
+          `
+          document.getElementById("modal-body-text").innerHTML = annotsHTML
+          document.getElementById("exampleModalLabel").innerHTML = `Verify TNS Membership`
+          document.getElementById("modal-btn").click()
+
+          document.getElementById("auth-link").addEventListener('click', (e) => {
+            logEvent('user clicked auth link', null)
+          });
+
+          return null
+        }
+
+        logEvent('user clicked view annotations', {
+          'bookmark_name': bookmarkTitle.innerText,
+          'num_annots': numAnnotsElem.innerText,
+          'num_com': numComHiddenElem.innerText,
+          'annotators': annotatorsElem.innerText,
+        })
+
+        let annots = contentAnnots[link.dataset.contentKey]
+        annotsHTML = ""
+        for (const annot of annots) {
+
+          let quotePart = "<span></span>"
+          if (annot.custom_data.quote) {
+            quotePart = `
+              <div>
+                <i style="font-size: 12px;"><b>"${annot.custom_data.quote}"</b></i>
+              </div>
+            `
+          }
+
+          annotsHTML = annotsHTML + `
+            <div class="annot">
+              ${quotePart}
+              <div>
+                <span style="font-size: 12px;">${annot.text}</span>
+              </div>
+              <div style="margin-top: 5px; margin-bottom: 5px;">
+                ${renderTags(annot.tags)}
+              </div>
+              <div style="font-size: 12px;">- ${annot.user}</div>
+            </div>
+            <br/>
+          `
+          document.getElementById("modal-body-text").innerHTML = annotsHTML
+          document.getElementById("exampleModalLabel").innerHTML = `Annotations for "${annot.title}"`
+          document.getElementById("modal-btn").click()
+
+        }
+
+      })
+    }
+
+    function getContentAnnots() {
+      return contentAnnots
+    }
+
 
     let options = {
       valueNames: [ 'bookmark-title', 'bookmark-date-hidden', 'num-annots'] 

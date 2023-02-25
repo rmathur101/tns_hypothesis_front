@@ -12,11 +12,39 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   </head>
   <body>
+
+      <!-- Button trigger modal -->
+    <button style="display: none;" id="modal-btn" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="background-color: white; border-radius: 5px;">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" id="modal-body-text">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
     <div class="container-fluid" style="margin-left: 30px; margin-top: 30px;">
-      <h1>TNS Readers Dashboard</h1>
-      <h5 id="faq-link" style="color:#716397; display: inline-block;" class="fake-link"><a style="color: #716397" href="https://long-turnip-0b5.notion.site/FAQ-1729-TNS-Readers-Group-50acafae592146bc8a11e380c020a449" target="blank">FAQ</a></h5>
+      <h1>TNS Annotators Dashboard</h1>
+      <h5 id="faq-link" style="color:#716397; display: inline-block;" class="fake-link">
+        <a style="color: #716397" href="https://long-turnip-0b5.notion.site/FAQ-1729-TNS-Readers-Group-50acafae592146bc8a11e380c020a449" target="blank">FAQ</a>
+      </h5>
       <h5 id="video-link" style="color:#716397; display: inline-block; margin-left: 20px;" class="fake-link"><a style="color: #716397" href="https://www.youtube.com/watch?v=srTXdUEoVU8" target="blank">VIDEO TUTORIAL</a></h5>
-      <h5 id="join-group-link" style="color:#716397; display: inline-block; margin-left: 20px;" class="fake-link"><a data-placement="bottom" data-toggle="tooltip" title="This links to a message in the TNS Discord. This message includes instructions on how to join the group. Only members of the TNS discord will have access." style="color: #716397" href="https://discord.com/channels/900827411917201418/941211554689450064/1075468701748437112" target="blank">JOIN GROUP</a></h5>
+      <h5 id="join-group-link" style="color:#716397; display: inline-block; margin-left: 20px;" class="fake-link"><a data-placement="bottom" data-toggle="tooltip" title="Go to the Discord message with instructions on how to sign up." style="color: #716397" href="https://discord.com/channels/900827411917201418/941211554689450064/1075468701748437112" target="blank">BECOME AN ANNOTATOR</a></h5>
+
       <div id="saved-bookmarks-table-cont">
         <!-- <input id="saved-bookmarks-search" type="search" class="search" placeholder='Search Name, Tags, Commentators'> -->
         <!-- <select id="saved-bookmarks-select">
@@ -63,9 +91,11 @@
           </table>
         </div>
       </div>
+
+
     </div>
 
-    <!-- <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.1/dist/js.cookie.min.js"></script>
     <script src="list.js"></script>
     <script src="bootstrap-5.3.0-alpha1-dist/js/bootstrap.bundle.min.js"></script>
     <script src="moment.min.js"></script>

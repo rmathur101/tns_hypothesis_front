@@ -4,6 +4,17 @@
 	text-decoration: none !important;
 }
 
+.fake-link a {
+	cursor: pointer !important;
+}
+
+.view-annot-info {
+	font-size: 15px !important;
+  vertical-align: middle;
+	color: #716397;
+	cursor: pointer;
+}
+
 .fake-link:hover {
 	text-decoration: underline;
 }
@@ -195,6 +206,18 @@ body, input, textarea {
 .open-URL-link {
 	text-decoration: underline;
 	color: #716397;
+	font-weight: 500;
+}
+
+.annot {
+	border: 1px solid black;
+	padding: 15px 15px 15px 15px;
+	border-radius: 5px
+}
+
+.view-annots-link {
+	text-decoration: underline;
+	color: #716397 !important;
 	font-weight: 500;
 }
 
@@ -413,24 +436,6 @@ span:focus {
 	width: 100%;
 	bottom: 0px;
 	height: 150px; */
-}
-
-.modal {
-  /* display: flex; */
-  /* flex-direction: column; */
-  justify-content: center;
-  width: 450px;
-  padding: 10px;
-  min-height: 250px;
-	bottom: 15px;
-  background-color: white;
-  border: 1px solid #ddd;
-  border-radius: 2px;
-	position: absolute;
-	z-index: 2;
-	height: 450px;
-	right: 15px;
-	border: 1px solid #716397;
 }
 
 .modal-pinned {
