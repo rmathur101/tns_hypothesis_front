@@ -2,11 +2,6 @@
 let api = "http://localhost:8000"
 // let api = "https://9e8b-2600-1700-290-da50-71d5-53af-3302-40c1.ngrok.io"
 
-
-function hideLoginElems() {
-  document.getElementById("login-cont").style.display = "none";
-}
-
 let contentAnnots = null
 
 let authenticated = false;
@@ -23,7 +18,6 @@ if (jwt) {
   })
   .then((res) => {
     if (res.status == 200) {
-      hideLoginElems();
       authenticated = true;
       getAnnotationsFeed();
     }
@@ -48,7 +42,6 @@ if (authenticated == false && discordCode) {
     console.log("data from /discord");
     console.log(data);
     if (data.status_code == 200) {
-      hideLoginElems();
       Cookies.set('jwt', data.jwt_access_token);
       authenticated = true;
 
