@@ -157,7 +157,11 @@ function getAnnots() {
         "So, you want to make some content?": "Michael Finney",
         "Panic at the Casino": "youdoknowjack",
         "How to Incorporate AI into The Publishing Process": "grant",
-        "A Farewell to Innocence: Crypto Pitfalls That Network States Should Avoid": "Jim_Nomad" 
+        "A Farewell to Innocence: Crypto Pitfalls That Network States Should Avoid": "Jim_Nomad",
+        "Sig's Dairy - Age of Inspiration # 3": "Sig",
+        "Authenticity Amplified": "BulldozerMantra",
+        "❤️ A 1729 Love Story 🌸": "ojas",
+        "AGI Doomers, Not AGI, Will Doom Us All": "Tom" 
       }
 
       let author = titleAuthorMap[title.trim()]
