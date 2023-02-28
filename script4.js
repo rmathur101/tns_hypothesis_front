@@ -161,7 +161,10 @@ function getAnnots() {
         "Sig's Dairy - Age of Inspiration # 3": "Sig",
         "Authenticity Amplified": "BulldozerMantra",
         "❤️ A 1729 Love Story 🌸": "ojas",
-        "AGI Doomers, Not AGI, Will Doom Us All": "Tom" 
+        "AGI Doomers, Not AGI, Will Doom Us All": "Tom",
+        "Cultivating a Culture of Innovation: Why Artists are Essential to a Network State": "Camellia",
+        "Would the US Founders approve of the Network State?": "MattHarder",
+        "Optimalism, Strengthen your Body - DS Compounding": "Dave86(CH)" 
       }
 
       let author = titleAuthorMap[title.trim()]
