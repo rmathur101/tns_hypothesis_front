@@ -164,7 +164,19 @@ function getAnnots() {
         "AGI Doomers, Not AGI, Will Doom Us All": "Tom",
         "Cultivating a Culture of Innovation: Why Artists are Essential to a Network State": "Camellia",
         "Would the US Founders approve of the Network State?": "MattHarder",
-        "Optimalism, Strengthen your Body - DS Compounding": "Dave86(CH)" 
+        "Optimalism, Strengthen your Body - DS Compounding": "Dave86(CH)",
+        "Web 4.0 - A web for Network States & AI": "Abhisek",
+        "Aya (آية)": "MattHarder",
+        "Lessons on Building Network States: A Look into the Future": "Camellia",
+        "Money, War, Nukes, Entropy, and Bitcoin": "youdoknowjack",
+        "A Match Made in Heaven": "khrannok",
+        "Zero or Infinity: Part One": "Coleman",
+        "📉 The Anti Jevons Paradox: avoiding the eficiency trap": "Nuraling",
+        "Developing NFT Project Strategies": "Michael Finney",
+        "The Renaissance of Trust": "BulldozerMantra",
+        "Seizing the Day: How Network Unions Become Powerbrokers in Democracies": "Jim_Nomad",
+        "AI and community Consciousness, Chapter Two - DS Compounding": "Dave86(CH)",
+        "Sig's Dairy - Age of Inspiration #5": "Sig" 
       }
 
       let author = titleAuthorMap[title.trim()]
